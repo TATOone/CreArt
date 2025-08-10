@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from app.database import engine, Base
-from routes import dashboard, admin
+from app.routes import dashboard, admin
 
 Base.metadata.create_all(bind=engine)
 
