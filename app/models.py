@@ -1,5 +1,7 @@
 import enum
 from datetime import datetime
+
+from alembic.operations.toimpl import create_constraint
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Enum, Text
 from sqlalchemy.orm import relationship
 
@@ -54,10 +56,10 @@ class User(Base):
     last_publications_count = Column(Integer, nullable=True)
     total_likes = Column(Integer, nullable=True)
     avatar = Column(String(255), nullable=True)
-    role = Column(Enum(RoleType), nullable=True, default=RoleType.USER)
-    is_active = Column(Boolean, nullable=False)
+    role = Column(Enum(RoleType), nullable=False, server_default='user', native_enum=True)
+    is_active = Column(Boolean, nullable=False, default=True)
 
-    settings = relationship('UserSettings', backref='user', uselist=False)
+    settings = relationship('UserSettings', back_populates='user', uselist=False)
 
 
 class UserSettings(Base):
@@ -66,7 +68,7 @@ class UserSettings(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     theme = Column(Enum(ThemeType), nullable=True, default=ThemeType.DARK)
-    notifications_enabled = Column(Boolean, nullable=True)
+    notifications_enabled = Column(Boolean, nullable=False, default=True)
     language = Column(String(10), nullable=True, default='en')
 
-    user = relationship('User', backref='settings')
+    user = relationship('User', back_populates='settings')
