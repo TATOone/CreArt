@@ -56,7 +56,7 @@ class User(Base):
     last_publications_count = Column(Integer, nullable=True)
     total_likes = Column(Integer, nullable=True)
     avatar = Column(String(255), nullable=True)
-    role = Column(Enum(RoleType), nullable=False, server_default='user', native_enum=True)
+    role = Column(Enum(RoleType), nullable=False, default=RoleType.USER, server_default='user')
     is_active = Column(Boolean, nullable=False, default=True)
 
     settings = relationship('UserSettings', back_populates='user', uselist=False)
@@ -67,7 +67,7 @@ class UserSettings(Base):
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
-    theme = Column(Enum(ThemeType), nullable=True, default=ThemeType.DARK)
+    theme = Column(Enum(ThemeType), nullable=True, default=ThemeType.DARK, server_default='dark')
     notifications_enabled = Column(Boolean, nullable=False, default=True)
     language = Column(String(10), nullable=True, default='en')
 
