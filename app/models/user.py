@@ -1,26 +1,9 @@
-import enum
 from datetime import datetime
-
-from alembic.operations.toimpl import create_constraint
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Enum, Text
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, Enum, Text
 from sqlalchemy.orm import relationship
 
-
-from app.database import Base
-
-
-class RoleType(enum.Enum):
-    ADMIN = 'admin'
-    USER = 'user'
-
-class SkillLevelType(enum.Enum):
-    BEGINNER = 'beginner'
-    INTERMEDIATE = 'intermediate'
-    PROFESSIONAL = 'professional'
-
-class ThemeType(enum.Enum):
-    DARK = 'dark'
-    LIGHT = 'light'
+from app.core.database import Base
+from app.models.types import *
 
 
 class User(Base):
@@ -60,15 +43,3 @@ class User(Base):
     is_active = Column(Boolean, nullable=False, default=True)
 
     settings = relationship('UserSettings', back_populates='user', uselist=False)
-
-
-class UserSettings(Base):
-    __tablename__ = 'user_settings'
-
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    theme = Column(Enum(ThemeType), nullable=True, default=ThemeType.DARK, server_default='dark')
-    notifications_enabled = Column(Boolean, nullable=False, default=True)
-    language = Column(String(10), nullable=True, default='en')
-
-    user = relationship('User', back_populates='settings')

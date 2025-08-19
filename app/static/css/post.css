@@ -1,0 +1,252 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #EAEAEA;
+  color: rgb(47, 47, 47);
+  font-family: 'Montserrat', sans-serif;
+}
+a {
+  color: rgb(47, 47, 47);
+  text-decoration: none;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+}
+.add-post {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.add-post__text{
+    font-size: 30px;
+}
+.add-post__button {
+  background-color: #d9d9d9;
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+ border: none;
+}
+.grid-container{
+    padding: 100px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+.card {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    align-items: center;
+    border: solid  #c3c2c2;
+}
+.card-fixed {
+    width: 100%;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    align-items: center;
+    border: solid  #c3c2c2;
+    border-left-color: #8A2BE2;
+}
+.card-avatar-fixed {
+    width: 100%;
+    height: 300px;
+    background-image: url(Rectangle\ 50.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.card-avatar {
+    width: 100%;
+    height: 300px;
+    background-image: url(Rectangle\ 52.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.card-info {
+    width: 100%;
+}
+.card-name {
+    font-size: 30px;
+    margin-bottom: 2px;
+        }
+.card-desc{
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+.subscribe{
+    margin-top: 20px;
+    height: 30px;
+    width: 300px;
+    font-size: 20px;
+    background-color: #949094;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.box{
+    display: flex;
+    gap: 20px;
+}
+.social-actions {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.social-actions button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.like-btn, .comment-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: all 0.3s;
+}
+.like-btn:hover, .comment-btn:hover {
+  background: #e0e0e0;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: #666;
+  transition: fill 0.3s;
+}
+.counter {
+  font-size: 14px;
+  color: #666;
+  transition: color 0.3s;
+}
+.like-input:checked + .icon {
+  fill: #ff4081;
+  animation: like-pulse 0.5s ease;
+}
+.like-input:checked ~ .counter {
+  color: #ff4081;
+}
+@keyframes like-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+.like-input {
+  position: absolute;
+  opacity: 0;
+}
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.modal:target {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+.modal-content {
+  background-color: #EAEAEA;
+  padding: 20px;
+  width: 700px;
+  max-width: 90%;
+  position: relative;
+}
+.modal-content h2 {
+  margin: 0 0 20px 0;
+  font-size: 30px;
+  text-align: center;
+  color: #333;
+}
+.post-text {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  margin-bottom: 50px;
+  font-size: 20px;
+  background-color: #EAEAEA;
+  border: 1px solid #8d1bad;
+  resize: none;
+}
+.file-upload-container {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+.file-upload-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 110px;
+  height: 110px;
+  border: 1px solid #8d1bad;
+  background-color: #ada8ad;
+  cursor: pointer;
+  transition: border 0.3s;
+}
+.file-upload-btn:hover {
+  border-color: #999;
+}
+.file-upload-btn span:first-child {
+  font-size: 24px;
+  color: #555;
+}
+.file-upload-btn span:last-child {
+  font-size: 20px;
+  color: #504e4e;
+}
+.file-input {
+  display: none;
+}
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+.cancel-btn {
+  font-size: 20px;
+  padding: 10px 20px;
+  background: #aa7ab0;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+}
+.publish-btn {
+  font-size: 20px;
+  padding: 10px 20px;
+  background: #538a55;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

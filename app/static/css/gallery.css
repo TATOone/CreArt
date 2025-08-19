@@ -1,0 +1,113 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #EAEAEA;
+  color: rgb(47, 47, 47);
+  font-family: 'Montserrat', sans-serif;
+}
+a {
+  color: rgb(47, 47, 47);
+  text-decoration: none;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+}
+.add-post {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.add-post__text{
+    font-size: 30px;
+}
+.add-post__button {
+  background-color: #d9d9d9;
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+ border: none;
+}
+
+/* Основные стили витрины */
+.showcase {
+  padding: 40px 0;
+}
+
+.showcase__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.showcase__header {
+  margin-bottom: 30px;
+}
+
+.showcase__button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.showcase__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.showcase__item {
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.showcase__item:hover {
+  transform: translateY(-5px);
+}
+
+/* Стили для изображений */
+.showcase__image-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase__image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.showcase__image-link:hover .showcase__image {
+  transform: scale(1.03);
+}
+
+.showcase__stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 15px;
+}
+
+.showcase__stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.showcase__icon {
+  width: 16px;
+  height: 16px;
+}
+

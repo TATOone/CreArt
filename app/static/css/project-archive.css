@@ -1,0 +1,119 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #EAEAEA;
+  color: rgb(47, 47, 47);
+  font-family: 'Montserrat', sans-serif;
+}
+a {
+  color: rgb(47, 47, 47);
+  text-decoration: none;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+}
+.grid-container{
+    padding: 100px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+.card {
+    width: 600px;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    align-items: center;
+background-color: #c3c2c2;
+
+}
+.card-avatar {
+    position: relative;
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    display: block; 
+    margin-bottom: 70px;
+}
+.card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.card-info {
+    width: 500px;
+}
+.card-name {
+    font-size: 30px;
+    margin-bottom: 2px;
+        }
+.card-desc{
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.card-desc1{
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+.card-desc2{
+    font-size: 15px;
+    margin-bottom: 2px;
+    color: #8A2BE2;
+}
+.gradient-block {
+  width: 100%; 
+  height: 20px;
+  background: linear-gradient(90deg,  #8A2BE2 0%,  #E6E6FA 30%, #FFFFFF 50%, #D3D3D3 70%, #808080 100%);
+  border-radius: 10px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+.button-sub {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  gap: 100px; 
+  margin-top: 20px;
+}
+
+.subscribe {
+  height: 50px;
+  width: 200px;
+  padding: 10px 16px;
+  background-color: #ffffff; 
+  color: rgb(52, 52, 52);
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  border: none;
+  cursor: pointer;
+}
+
+.subscribe:hover {
+  background-color: #bea1c9; 
+}
+.plus {
+    width: 500px;
+display: flex;
+justify-content: center;
+  background: none; 
+  border: none; 
+  color: #8A2BE2; 
+  font-size: 25px;
+  cursor: pointer; 
+  padding: 8px 12px; 
+}
+.plus:hover {
+  color: #6A1B9A;
+}
+

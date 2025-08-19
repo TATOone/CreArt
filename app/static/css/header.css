@@ -1,0 +1,325 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #EAEAEA;
+  color: rgb(47, 47, 47);
+  font-family: 'Montserrat', sans-serif;
+}
+a {
+  color: rgb(47, 47, 47);
+  text-decoration: none;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+}
+/* Стили для шапки */
+header {
+  width: 100%;
+  height: 50px;
+  background-color: #dfdde8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 5vh;
+}
+
+.logo {
+  padding: 5vh;
+}
+
+.nav-left, .nav-right, .nav-center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Стили для выпадающего меню */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 200px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.profile-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(5px);
+}
+
+/* Hero section */
+.hero {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("../img/images/Rectangle\ 2.png");
+  padding: 20px 0 40px;
+}
+
+.hero__container {
+  width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero__user-info {
+  padding: 10px 0;
+  text-align: right;
+}
+
+.hero__nickname {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  color: #fff;
+}
+
+.hero__content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.hero__left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+}
+.hero__avatar {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
+
+.hero__editable {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  padding: 15px;
+}
+
+.editable__text {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #fff;
+  margin: 0;
+}
+
+.editable__btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.editable__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.hero__right {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+.hero__card{
+  width: 300px;
+}
+.hero__btn {
+  font-family: Poppins, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  background-color: #cccad7;
+  border: none;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.hero__box {
+  background-color: #eaeaea;
+  padding: 20px;
+  width: 850px;
+}
+
+.hero__stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.hero__stat {
+  font-family: Montserrat, sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: center;
+  display: block;
+}
+
+.hero__details {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.hero__info {
+  flex: 1;
+}
+
+.hero__info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.hero__text {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.hero__text--bold {
+  font-weight: 700;
+}
+
+.hero__info-group {
+  display: flex;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.hero__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.hero__achievements-title {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+}
+
+.hero__achievements-list {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.hero__achievements-list img {
+  width: 150px;
+  height: 150px;
+}
+
+.hero__badge {
+  width: 300px;
+  height: auto;
+}
+
+
+.hero__xp {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.hero__xp-value {
+  color: #ac10ea;
+}
+
+.hero__progress-bar {
+  width: 100%;
+  height: 20px;
+}
+
+/* Navigation section */
+.nav-section {
+  background-color: #cccad7;
+  padding: 15px 0;
+}
+.nav-section2 {
+  background-color: #d7d7dc;
+  padding: 15px 0;
+}
+.nav-section__menu {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-section__link {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #000;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.nav-section__link {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #000;
+  text-decoration: none;
+  padding: 5px 10px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-section__link:hover {
+  color: #530493;
+}
+
+.nav-section__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ac10ea;
+  transition: width 0.3s ease;
+}
+
+.nav-section__link:hover::after {
+  width: 100%;
+}
+.nav-section__menu1{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 650px;
+}

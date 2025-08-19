@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from app.database import engine, Base
-from app.routes import dashboard, admin
+from app.core.database import engine, Base
+from app.api.v1 import admin, user
 
 Base.metadata.create_all(bind=engine)
 
