@@ -26,7 +26,7 @@ class User(Base):
     email = Column(String(100), nullable=True)
     biography = Column(String(255), nullable=True)
     skills = Column(String(255), nullable=True)
-    skill_level = Column(Enum(SkillLevelType), nullable=True)
+    skill_level = Column(Enum(SkillLevelType), default=SkillLevelType.BEGINNER, server_default='beginner', nullable=True)
     teach_skills = Column(String(255), nullable=True)
     learn_skills = Column(String(255), nullable=True)
     collaboration_interests = Column(String(255), nullable=True)
