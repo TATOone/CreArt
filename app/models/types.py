@@ -12,3 +12,9 @@ class SkillLevelType(enum.Enum):
 class ThemeType(enum.Enum):
     DARK = 'dark'
     LIGHT = 'light'
+
+class ProjectStatusTypes(enum.Enum):
+    ACTIVE = 'active'
+    INPROGRESS = 'inprogress'
+    COMPLETED = 'completed'
+    ARCHIVED = 'archived'

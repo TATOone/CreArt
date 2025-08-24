@@ -3,7 +3,8 @@ from sqlalchemy import Column, Integer, String, DateTime, Boolean, Enum, Text
 from sqlalchemy.orm import relationship
 
 from app.core.database import Base
-from app.models.types import *
+from app.models.followers import Follower
+from app.models.types import SkillLevelType, RoleType
 
 
 class User(Base):
@@ -42,4 +43,11 @@ class User(Base):
     role = Column(Enum(RoleType), nullable=False, default=RoleType.USER, server_default='user')
     is_active = Column(Boolean, nullable=False, default=True)
 
-    settings = relationship('UserSettings', back_populates='user', uselist=False)
+    settings = relationship('UserSettings', back_populates='user', uselist=True)
+    artworks = relationship('Artwork', back_populates='user', uselist=True)
+    comments = relationship('Comment', back_populates='user', uselist=True)
+    followers = relationship('Follower',foreign_keys=[Follower.user_id], back_populates='user', uselist=True)
+    following = relationship('Follower', foreign_keys=[Follower.follower_id], back_populates='followers', uselist=True)
+    posts = relationship('Post', back_populates='user', uselist=True)
+    likes = relationship('Like', back_populates='user', uselist=True)
+    projects = relationship('Project', back_populates='user', uselist=True)
