@@ -4,7 +4,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime, Enum
 from sqlalchemy.orm import relationship
 
 from app.core.database import Base
-from app.models.types import ProjectStatusTypes
+from app.models.type import ProjectStatusTypes
 
 class Project(Base):
     __tablename__ = 'projects'

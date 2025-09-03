@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 
 from app.core.database import Base
-from app.models.types import *
+from app.models.type import *
 
 
 class UserSettings(Base):

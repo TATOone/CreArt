@@ -1,1 +1,1 @@
-from . import types, user, user_settings, artworks, comments, projects, posts, followers, likes
+from . import type, user, user_settings, artwork, comment, project, post, follower, like, tag, post_tags

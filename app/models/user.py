@@ -3,8 +3,8 @@ from sqlalchemy import Column, Integer, String, DateTime, Boolean, Enum, Text
 from sqlalchemy.orm import relationship
 
 from app.core.database import Base
-from app.models.followers import Follower
-from app.models.types import SkillLevelType, RoleType
+from app.models.follower import Follower
+from app.models.type import SkillLevelType, RoleType
 
 
 class User(Base):

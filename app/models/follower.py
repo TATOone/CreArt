@@ -14,4 +14,4 @@ class Follower(Base):
     created_at = Column(DateTime, default=datetime.now)
 
     user = relationship('User', foreign_keys=[user_id], back_populates='followers')
-    follower = relationship('User', foreign_keys=[follower_id], back_populates='following')
+    followers = relationship('User', foreign_keys=[follower_id], back_populates='following')

@@ -4,6 +4,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Text, Boolean, DateT
 from sqlalchemy.orm import relationship
 
 from app.core.database import Base
+from app.models.post_tags import post_tags
 
 
 class Post(Base):
@@ -20,5 +21,6 @@ class Post(Base):
     is_pinned = Column(Boolean, default=False, server_default='0')
 
     user = relationship('User', back_populates='posts')
-    comments = relationship('Comment', back_populates='post')
-    likes = relationship('Like', back_populates='posts')
+    comments = relationship('Comment', back_populates='post', cascade='all, delete-orphan')
+    likes = relationship('Like', back_populates='post', cascade='all, delete-orphan')
+    tags = relationship('Tag', secondary=post_tags, back_populates='posts')

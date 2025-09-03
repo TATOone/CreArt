@@ -4,7 +4,8 @@ from sqlalchemy.orm import sessionmaker
 from pytest import fixture
 
 from app.core.database import Base
-from app.models.types import SkillLevelType, RoleType
+from app.models.post import Post
+from app.models.type import SkillLevelType, RoleType
 from app.models.user import User
 
 
@@ -58,3 +59,21 @@ def test_user(db_session):
     db_session.commit()
     db_session.refresh(test_user)
     return test_user
+
+
+@fixture(scope='function')
+def test_post(db_session):
+    test_post = Post(
+        user_id=1,
+        title='TestPost',
+        content='TestContent',
+        created_at=datetime(2024,1,1),
+        category='TestCategory',
+        likes_count=1,
+        comments_count=1,
+        is_pinned=True,
+    )
+    db_session.add(test_post)
+    db_session.commit()
+    db_session.refresh(test_post)
+    return test_post
