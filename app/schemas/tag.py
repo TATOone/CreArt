@@ -8,8 +8,8 @@ class TagBase(BaseModel):
 class TagCreate(TagBase):
     pass
 
-class TagUpdate(BaseModel):
-    name: Optional[str] = None
+# class TagUpdate(BaseModel):       # Не уверен нужно будет или нет.
+#     name: Optional[str] = None
 
 class TagOut(TagBase):
     id: int

@@ -5,6 +5,7 @@ from pytest import fixture
 
 from app.core.database import Base
 from app.models.post import Post
+from app.models.tag import Tag
 from app.models.type import SkillLevelType, RoleType
 from app.models.user import User
 
@@ -77,3 +78,11 @@ def test_post(db_session):
     db_session.commit()
     db_session.refresh(test_post)
     return test_post
+
+@fixture(scope='function')
+def test_tag(db_session):
+    test_tag = Tag(name='TestTag')
+    db_session.add(test_tag)
+    db_session.commit()
+    db_session.refresh(test_tag)
+    return test_tag
