@@ -3,7 +3,8 @@ from enum import Enum
 from typing import Optional
 from pydantic import BaseModel
 
-class UserCreate(BaseModel):
+
+class UserBase(BaseModel):
     username: str
     first_name: str
     last_name: str
@@ -14,7 +15,7 @@ class UserCreate(BaseModel):
     created_at: datetime
     short_description: str
     achievements: str
-    city:str
+    city: str
     birth_date: datetime
     specialization: str
     email: str
@@ -33,6 +34,9 @@ class UserCreate(BaseModel):
     last_publications_count: int
     total_likes: int
     avatar: str
+
+
+class UserCreate(UserBase):
     role: Enum
     is_active: bool
 
@@ -68,4 +72,12 @@ class UserUpdate(BaseModel):
     role: Optional[Enum] = None
     is_active: Optional[bool] = None
 
+
+class UserOut(UserBase):
+    role: Enum
+    is_active: bool
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
 

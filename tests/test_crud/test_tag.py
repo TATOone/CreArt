@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from tests.conftest import db_session, test_tag
 from app.models.tag import Tag
 from app.schemas.tag import TagCreate
-from app.crud.tag import get_tag, get_tag_by_name, create_tag
+from app.crud.tag import get_tag, get_tag_by_name
 
 
 def test_create_tag(db_session: Session, test_tag: TagCreate):
