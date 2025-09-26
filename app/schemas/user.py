@@ -5,40 +5,14 @@ from pydantic import BaseModel
 
 
 class UserBase(BaseModel):
-    username: str
-    first_name: str
-    last_name: str
-    bio: str
-    profession: str
-    location: str
-    company: str
-    created_at: datetime
-    short_description: str
-    achievements: str
-    city: str
-    birth_date: datetime
-    specialization: str
-    email: str
-    biography: str
-    skills: str
-    skills_level: Enum
-    teach_skills: str
-    learn_skills: str
-    collaboration_interests: str
-    current_projects: str
-    vk_link: str
-    behance_link: str
-    youtube_link: str
-    telegram_link: str
-    pinterest_link: str
-    last_publications_count: int
-    total_likes: int
-    avatar: str
+    first_name: str | None = None
+    last_name: str | None = None
 
 
 class UserCreate(UserBase):
-    role: Enum
-    is_active: bool
+    username: str
+    email: str
+    password: str
 
 class UserUpdate(BaseModel):
     username: Optional[str] = None
@@ -73,11 +47,43 @@ class UserUpdate(BaseModel):
     is_active: Optional[bool] = None
 
 
-class UserOut(UserBase):
-    role: Enum
-    is_active: bool
+class UserPublic(UserBase):
+    username: str
+    bio: Optional[str] = None
+    vk_link: Optional[str] = None
+    behance_link: Optional[str] = None
+    youtube_link: Optional[str] = None
+    telegram_link: Optional[str] = None
+    pinterest_link: Optional[str] = None
+    short_description: Optional[str] = None
+    collaboration_interests: Optional[str] = None
+    current_projects: Optional[str] = None
+    specialization: Optional[str] = None
 
     class Config:
         orm_mode = True
         from_attributes = True
+
+
+class UserOut(UserPublic):
+    email:str
+    role: Enum
+    is_active: bool
+    profession: Optional[str] = None
+    location: Optional[str] = None
+    company: Optional[str] = None
+    achievements: Optional[str] = None
+    city: Optional[str] = None
+    birth_date: Optional[datetime] = None
+    email: Optional[str] = None
+    biography: Optional[str] = None
+    skills: Optional[str] = None
+    skills_level: Optional[Enum] = None
+    teach_skills: Optional[str] = None
+    learn_skills: Optional[str] = None
+    last_publications_count: Optional[int] = None
+    total_likes: Optional[int] = None
+    avatar: Optional[str] = None
+    role: Optional[Enum] = None
+    is_active: Optional[bool] = None
 

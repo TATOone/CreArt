@@ -40,6 +40,7 @@ class User(Base):
     last_publications_count = Column(Integer, nullable=True)
     total_likes = Column(Integer, nullable=True)
     avatar = Column(String(255), nullable=True)
+    password_hash = Column(String(255), nullable = False)
     role = Column(Enum(RoleType), nullable=False, default=RoleType.USER, server_default='user')
     is_active = Column(Boolean, nullable=False, default=True)
 

@@ -1,7 +1,7 @@
+import bcrypt
 from sqlalchemy.orm import Session
 
 from app.crud.tag import get_tag_by_name
-from app.models.post import Post
 from app.models.tag import Tag
 
 
@@ -15,3 +15,12 @@ def resolved_tags(db: Session, tags: list) -> list:
             db.add(tag)
         resolved.append(tag)
     return resolved
+
+
+def hash_password(password):
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+
+def verify_password(password, hashed_password):
+    return bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8'))
+
