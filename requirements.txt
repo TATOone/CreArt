@@ -1,3 +1,4 @@
+python-jose
 pydantic-settings
 pytest
 pydantic
