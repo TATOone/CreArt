@@ -1,4 +1,4 @@
-from fastapi import Depends, HTTPException, APIRouter, Request
+from fastapi import Depends, HTTPException, APIRouter, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
@@ -24,9 +24,9 @@ def login(form_data: OAuth2PasswordRequestForm, db: Session=Depends(get_db)):
     password = form_data.password
     user = db.query(User).filter(User.username == username).first()
     if not user:
-        raise HTTPException(status_code=404, detail="Неверное имя пользователя!")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Неверное имя пользователя!")
     if not verify_password(password, user.password):
-        raise HTTPException(status_code=404, detail="Неверный пароль!")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Неверный пароль!")
     token = create_access_token(data={'sub': user.id, 'username': username, 'role': user.role.value})
     return {'token': token, 'token_type': 'bearer'}
 
