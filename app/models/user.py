@@ -52,3 +52,4 @@ class User(Base):
     posts = relationship('Post', back_populates='user', uselist=True)
     likes = relationship('Like', back_populates='user', uselist=True)
     projects = relationship('Project', back_populates='user', uselist=True)
+    refresh_tokens = relationship('RefreshToken', back_populates='user', uselist=True)

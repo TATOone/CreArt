@@ -12,3 +12,4 @@ python-dotenv
 alembic
 cryptography
 bcrypt
+email-validator
