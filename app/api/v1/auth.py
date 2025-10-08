@@ -5,12 +5,15 @@ from jose import jwt, JWTError
 from sqlalchemy.orm import Session
 
 from app.core.database import SessionLocal
+from app.crud import refresh_token
+from app.crud.refresh_token import delete_refresh_token
 from app.crud.user import create_user, get_user_by_username, get_user_by_email
 from app.models.user import User
 from app.core.security_utils import verify_password, create_access_token, create_refresh_token
 from app.schemas.token import RefreshRequest
 from app.core.config import settings
 from app.schemas.user import UserCreate, UserOut
+from app.utils import get_current_user
 
 router = APIRouter()
 templates = Jinja2Templates("templates")
@@ -74,6 +77,17 @@ def register( user_data: UserCreate, db: Session=Depends(get_db)):
         )
     user = create_user(db, user_data)
     return user
+
+
+@router.post('/logout')
+def logout(request: RefreshRequest, db: Session=Depends(get_db), user: User=Depends(get_current_user)):
+    token = request.refresh_token
+    if not delete_refresh_token(db, token):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail='Такого токена нет в базе!'
+        )
+    return {'detail': 'Вы успешно разлогинились:)'}
 
 
 
