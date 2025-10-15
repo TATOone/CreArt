@@ -45,11 +45,11 @@ async def update_user(db: AsyncSession, user: User, updates: UserUpdate) -> User
     return user
 
 
-async def delete_user(db: AsyncSession, user_id: int) -> bool:
+async def delete_user(db: AsyncSession, user_id: int):
     user = await db.get(User, user_id)
     if not user:
-        return False
-    await db.delete(user)
+        return None
+    db.delete(user)
     await db.commit()
     return True
 

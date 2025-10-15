@@ -44,7 +44,7 @@ async def update_artwork(db: AsyncSession, artwork_id: int, updates: ArtworkUpda
 async def delete_artwork(db: AsyncSession, artwork_id: int) -> bool:
     artwork = await db.get(Artwork, artwork_id)
     if not artwork:
-        return False
-    await db.delete(artwork)
+        return None
+    db.delete(artwork)
     await db.commit()
     return True
