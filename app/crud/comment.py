@@ -34,7 +34,7 @@ async def update_comment(db: AsyncSession, comment_id: int, updates: CommentUpda
     await db.refresh(comment)
     return comment
 
-async def delete_comment(db: AsyncSession, comment_id: int):
+async def delete_comment(db: AsyncSession, comment_id: int) -> bool | None:
     comment = await db.get(Comment, comment_id)
     if not comment:
         return None
