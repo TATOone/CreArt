@@ -18,7 +18,7 @@ async def create_user(db: AsyncSession, user: UserCreate) -> User:
     return new_user
 
 
-async def get_user_by_id(user_id: int, db: AsyncSession) -> User | None:
+async def get_user_by_id(db: AsyncSession, user_id: int) -> User | None:
     user = await db.get(User, user_id)
     return user
 

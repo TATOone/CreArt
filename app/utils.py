@@ -1,5 +1,5 @@
 from jose import jwt, JWTError
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.database import SessionLocal
@@ -13,15 +13,13 @@ from app.models.type import RoleType
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
-def get_db():
-    session: Session = SessionLocal()
-    try:
+async def get_db():
+    """ Асинхронное подключение к сессии """
+    async with SessionLocal() as session:
         yield session
-    finally:
-        session.close()
 
 
-def get_current_user(access_token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+async def get_current_user(access_token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Неверный токен",
@@ -35,25 +33,26 @@ def get_current_user(access_token: str = Depends(oauth2_scheme), db: Session = D
     except JWTError:
             raise credentials_exception
 
-    user = get_user_by_id(db, user_id)
+    user = await get_user_by_id(db, user_id)
     if user is None:
         raise credentials_exception
     return user
 
 
-def resolved_tags(db: Session, tags: list) -> list:
+async def resolved_tags(db: AsyncSession, tags: list) -> list:
     """ При создании поста с тегами, добавляет новые теги в БД и возвращает список тегов, которые знакомы базе данных """
     resolved = []
     for tag_schema in tags:
-        tag = get_tag_by_name(db, tag_schema.name)
+        tag = await get_tag_by_name(db, tag_schema.name)
         if not tag:
             tag = Tag(name=tag_schema.name)
             db.add(tag)
+            await db.flush()
         resolved.append(tag)
     return resolved
 
 
-def require_admin(access_token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+async def require_admin(access_token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)):
     role_exception = HTTPException(
         status_code=status.HTTP_403_FORBIDDEN,
         detail='Нет прав доступа',
@@ -72,7 +71,7 @@ def require_admin(access_token: str = Depends(oauth2_scheme), db: Session = Depe
     except JWTError:
         raise credentials_exception
 
-    user = get_user_by_id(db, user_id)
+    user = await get_user_by_id(db, user_id)
     if not user:
         raise credentials_exception
     if user.role != RoleType.ADMIN:

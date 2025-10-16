@@ -1,17 +1,25 @@
-from sqlalchemy.orm import Session
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.tag import Tag
 from app.schemas.tag import TagCreate
 
 
-def create_tag(db: Session, tag: TagCreate):
+async def create_tag(db: AsyncSession, tag: TagCreate) -> Tag:
     new_tag = Tag(**tag.model_dump())
     db.add(new_tag)
-    db.commit()
-    db.refresh(new_tag)
+    await db.commit()
+    await db.refresh(new_tag)
     return new_tag
 
-def get_tag(db: Session, tag_id: int):
-    return db.query(Tag).filter(Tag.id == tag_id).first()
 
-def get_tag_by_name(db: Session, tag_name: str):
-    return db.query(Tag).filter(Tag.name == tag_name).first()
+async def get_tag(db: AsyncSession, tag_id: int) -> Tag | None:
+    tag = await db.get(Tag, tag_id)
+    return tag
+
+
+async def get_tag_by_name(db: AsyncSession, tag_name: str) -> Tag | None:
+    result = await db.execute(select(Tag).where(Tag.name == tag_name))
+    tag = await result.scalars().first()
+    if not tag:
+        return None
+    return tag
