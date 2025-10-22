@@ -10,7 +10,7 @@ class Project(Base):
     __tablename__ = 'projects'
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False)
-    user_id = Column(Integer, ForeignKey('users.id'))
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     description = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.now)
     status = Column(Enum(ProjectStatusTypes), default=ProjectStatusTypes.ACTIVE, server_default='active')

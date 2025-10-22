@@ -5,8 +5,8 @@ from app.models.comment import Comment
 from app.schemas.comment import CommentCreate, CommentUpdate
 
 
-async def create_comment(db: AsyncSession, comment: CommentCreate) -> Comment:
-    new_comment = Comment(**comment.model_dump())
+async def create_comment(db: AsyncSession, comment: CommentCreate, user_id: int, post_id: int) -> Comment:
+    new_comment = Comment(**comment.model_dump(), user_id=user_id, post_id=post_id)
     db.add(new_comment)
     await db.commit()
     await db.refresh(new_comment)

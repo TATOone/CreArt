@@ -13,15 +13,11 @@ from app.crud.user import create_user, get_user_by_id, get_user_by_username, get
 from app.models.user import User
 from app.schemas.token import RefreshRequest
 from app.schemas.user import UserCreate, UserOut
-from app.utils import get_current_user
+from app.utils import get_db
 
 
 router = APIRouter()
 templates = Jinja2Templates("templates")
-
-async def get_db():
-    async with SessionLocal() as db:
-        yield db
 
 
 @router.post("/login", response_model=None)

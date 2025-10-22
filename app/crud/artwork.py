@@ -5,8 +5,8 @@ from app.models.artwork import Artwork
 from app.schemas.artwork import ArtworkCreate, ArtworkUpdate
 
 
-async def create_artwork(db: AsyncSession, artwork: ArtworkCreate) -> Artwork:
-    new_artwork = Artwork(**artwork.model_dump())
+async def create_artwork(db: AsyncSession, artwork: ArtworkCreate, user_id: int) -> Artwork:
+    new_artwork = Artwork(**artwork.model_dump(), user_id=user_id)
     db.add(new_artwork)
     await db.commit()
     await db.refresh(new_artwork)

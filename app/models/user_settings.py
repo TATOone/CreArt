@@ -9,7 +9,7 @@ class UserSettings(Base):
     __tablename__ = 'user_settings'
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
+    user_id = Column(Integer, ForeignKey('users.id'), unique=True)
     theme = Column(Enum(ThemeType), nullable=True, default=ThemeType.DARK, server_default='dark')
     notifications_enabled = Column(Boolean, nullable=False, default=True)
     language = Column(String(10), nullable=True, default='en')
