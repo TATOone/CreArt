@@ -41,4 +41,4 @@ async def delete_user_settings_api(db: AsyncSession=Depends(get_db), user: User=
     result = await delete_user_settings(db, user.id)
     if not result:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Настройки не найдены!')
-    return Response(status_code=204)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)

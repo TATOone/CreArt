@@ -2,6 +2,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
+from app.models.like import Like
 from app.models.post import Post
 from app.schemas.post import PostCreate, PostUpdate
 from app.utils import resolved_tags
@@ -26,17 +27,32 @@ async def get_post_by_id(db: AsyncSession, post_id: int) -> Post | None:
     return post
 
 
-async def get_posts_by_user(db: AsyncSession, user_id: int) -> list[Post]:
+async def get_posts_by_user(db: AsyncSession, user_id: int) -> list[Post] | None:
     result = await db.execute(select(Post).where(Post.user_id == user_id))
     posts = result.scalars().all()
+    if not posts:
+        return None
     return posts
 
 
-async def get_posts_by_category(db: AsyncSession, category: str) -> list[Post]:
+async def get_posts_by_category(db: AsyncSession, category: str) -> list[Post] | None:
     result = await db.execute(select(Post).where(Post.category == category))
     posts = result.scalars().all()
+    if not posts:
+        return None
     return posts
 
+
+async def get_posts_by_user_like(db: AsyncSession, user_id: int, post_id: int) -> list[Post] | None:
+    result = await db.execute(
+        select(Post)
+        .join(Like)
+        .where(Like.post_id == post_id, Like.user_id == user_id)
+    )
+    posts = result.scalars().all()
+    if not posts:
+        return None
+    return posts
 
 async def update_post(db: AsyncSession, post: Post, updates: PostUpdate) -> Post | None:
     if not post:

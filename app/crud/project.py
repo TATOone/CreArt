@@ -30,10 +30,13 @@ async def get_projects_by_user_id(db: AsyncSession, user_id: int) -> list[Projec
     return projects
 
 
-async def get_projects_by_status(db: AsyncSession, status: str) -> list[Project]:
+async def get_projects_by_status(db: AsyncSession, status: str) -> list[Project] | None:
     """Получить проекты по статусу"""
     result = await db.execute(select(Project).where(Project.status == status))
-    return result.scalars().all()
+    projects = result.scalars().all()
+    if not projects:
+        return None
+    return projects
 
 
 async def update_project(db: AsyncSession, project: Project, updates: ProjectUpdate) -> Project | None:

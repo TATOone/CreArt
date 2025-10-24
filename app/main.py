@@ -7,7 +7,6 @@ from jose import jwt
 from jose.exceptions import JWTError
 
 from app.core.config import settings
-from app.core.database import engine
 from app.api.v1 import admin, user, auth, user_settings, project
 
 

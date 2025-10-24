@@ -17,7 +17,7 @@ async def create_project_api(project:ProjectCreate, db: AsyncSession=Depends(get
     try:
         new_project = await create_project(db, project, user.id)
     except (IntegrityError, SQLAlchemyError) as error:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=error.detail)
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(error))
     return new_project
 
 

@@ -12,7 +12,7 @@ async def follow_user(db: AsyncSession, user_id: int, follower_id: int) -> Follo
         select(Follower)
         .where(Follower.user_id == user_id, Follower.follower_id == follower_id)
     )
-    if not user or user.id == follower_id or existing.scalars().first():
+    if not user or user.id == follower_id or existing.scalars().one_or_none():
         return None
     follower = Follower(
         user_id=user.id,
@@ -32,7 +32,7 @@ async def unfollow_user(db: AsyncSession, user_id: int, follower_id: int) -> boo
     follow = result.scalars().first()
     if not follow:
         return None
-    db.delete(follow)
+    await db.delete(follow)
     await db.commit()
     return True
 
